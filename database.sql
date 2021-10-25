@@ -10,6 +10,12 @@ CREATE TABLE person (
   image TEXT
 );
 
+CREATE TABLE community (
+	id BIGSERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  members BIGINT NOT NULL
+)
+
 CREATE TABLE post (
   id BIGSERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(300) NOT NULL,
@@ -17,7 +23,8 @@ CREATE TABLE post (
   votes_sum BIGINT NOT NULL,
   comments_sum BIGINT NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, 
-  person_id BIGINT NOT NULL REFERENCES person (id)
+  person_id BIGINT NOT NULL REFERENCES person (id),
+  community_id BIGINT NOT NULL REFERENCES community (id)
 );
 
 CREATE TABLE comment (
